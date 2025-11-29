@@ -1,19 +1,20 @@
 import React from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import UseAuth from '../../Hooks/UseAuth';
 
 const SendParcel = () => {
     const { register,
-         handleSubmit, 
-         control,      
+        handleSubmit,
+        control,
         //formState: { errors }
     } = useForm();
 
-const {user} = UseAuth();
-const axiosSecure = useAxiosSecure();
+    const { user } = UseAuth();
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const serviceCenters = useLoaderData();
     const regionsDuplicate = serviceCenters.map(c => c.region);
@@ -50,7 +51,7 @@ const axiosSecure = useAxiosSecure();
         }
         console.log('cost', cost);
 
-        data.cost=cost;
+        data.cost = cost;
 
         Swal.fire({
             title: "Agree with the cost?",
@@ -59,21 +60,28 @@ const axiosSecure = useAxiosSecure();
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "I agrre"
+            confirmButtonText: "Confirm and continue pament!"
         }).then((result) => {
             if (result.isConfirmed) {
 
-             //save the parcel info to the database
-             axiosSecure.post('/parcels', data)
-             .then(res =>{
-                console.log('after saveing parcel', res.data);
-             })
+                //save the parcel info to the database
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saveing parcel', res.data);
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/my-parcels')
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Parcel has created. Please pay",
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
 
-                // Swal.fire({
-                //   title: "Deleted!",
-                //   text: "Your file has been deleted.",
-                //   icon: "success"
-                // });
+                        }
+                    })
+
+
             }
         });
     }
@@ -113,14 +121,14 @@ const axiosSecure = useAxiosSecure();
                         <h3 className='text-2xl font-semibold'>Sender Details</h3>
                         {/* sender name */}
                         <label className="label">Sender Name</label>
-                        <input type="text" {...register('senderName')} 
-                        defaultValue={user?.displayName}
-                        className="input w-full" placeholder="Sender Name" />
+                        <input type="text" {...register('senderName')}
+                            defaultValue={user?.displayName}
+                            className="input w-full" placeholder="Sender Name" />
                         {/* sender email */}
                         <label className="label">Sender Email</label>
                         <input type="email" {...register('senderEmail')}
-                        defaultValue={user?.email}
-                        className="input w-full" placeholder="Sender Email" />
+                            defaultValue={user?.email}
+                            className="input w-full" placeholder="Sender Email" />
 
 
                         {/* sender region */}
