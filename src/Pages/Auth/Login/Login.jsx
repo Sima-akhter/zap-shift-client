@@ -1,12 +1,12 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import UseAuth from '../../../Hooks/UseAuth';
+import useAuth from '../../../Hooks/UseAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const {signInUser} = UseAuth();
+    const {signInUser} = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     console.log('in the login page', location)

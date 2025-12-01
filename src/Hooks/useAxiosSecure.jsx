@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import UseAuth from './UseAuth'
+import useAuth from './UseAuth'
 import { useNavigate } from 'react-router'
 
 
@@ -9,7 +9,7 @@ const axiosSecure = axios.create({
 })
 
 const useAxiosSecure = () => {
-   const {user, logOut} = UseAuth();
+   const {user, logOut} = useAuth();
    const navigate = useNavigate();
   useEffect(()=>{
     // intercept request

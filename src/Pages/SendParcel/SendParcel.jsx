@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import UseAuth from '../../Hooks/UseAuth';
+import useAuth from '../../Hooks/UseAuth';
 
 const SendParcel = () => {
     const { register,
@@ -12,7 +12,7 @@ const SendParcel = () => {
         //formState: { errors }
     } = useForm();
 
-    const { user } = UseAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 

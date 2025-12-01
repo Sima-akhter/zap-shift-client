@@ -1,9 +1,11 @@
 import React from 'react'
 import { CiDeliveryTruck } from 'react-icons/ci'
-import { FaCreditCard, FaMotorcycle } from 'react-icons/fa'
+import { FaCreditCard, FaMotorcycle, FaUser } from 'react-icons/fa'
 import { Link, NavLink, Outlet } from 'react-router'
+import useRole from '../Hooks/useRole'
 
 const DashbordLayout = () => {
+  const {role} = useRole();
   return (
     <div>
 
@@ -51,12 +53,24 @@ const DashbordLayout = () => {
         <span className="is-drawer-close:hidden">Payment History</span>
         </NavLink>
       </li>
-      <li>
+
+      {
+        role === 'admin' && <>
+        <li>
         <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders" to="/dashboard/approve-riders">
         <FaMotorcycle />
         <span className="is-drawer-close:hidden">Approve Riders</span>
         </NavLink>
       </li>
+      <li>
+        <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management" to="/dashboard/users-management">
+        <FaUser></FaUser>
+        <span className="is-drawer-close:hidden">Users Management</span>
+        </NavLink>
+      </li>
+        
+        </>
+      }
 
 
 

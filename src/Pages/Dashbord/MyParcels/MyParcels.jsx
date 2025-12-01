@@ -1,5 +1,5 @@
 import React from 'react'
-import UseAuth from '../../../Hooks/UseAuth'
+import useAuth from '../../../Hooks/UseAuth'
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { FaRegEdit, FaTrashAlt } from 'react-icons/fa';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
 const MyParcels = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: parcels = [], refetch } = useQuery({
     queryKey: ['myParcels', user?.email],

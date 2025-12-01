@@ -1,10 +1,10 @@
 import React from 'react'
 import Logo from '../../../Components/Logo/Logo'
 import { Link, NavLink } from 'react-router'
-import UseAuth from '../../../Hooks/UseAuth'
+import useAuth from '../../../Hooks/UseAuth'
 
 const NavBar = () => {
-  const {user, logOut} = UseAuth();
+  const {user, logOut} = useAuth();
   const handleLogOut = () =>{
     logOut()
     .then()

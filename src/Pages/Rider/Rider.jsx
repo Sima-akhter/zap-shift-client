@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm, useWatch } from 'react-hook-form';
-import UseAuth from '../../Hooks/UseAuth';
+import useAuth from '../../Hooks/UseAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ const Rider = () => {
     //formState: { errors }
   } = useForm();
 
-  const { user } = UseAuth();
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const serviceCenters = useLoaderData();
