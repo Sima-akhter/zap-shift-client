@@ -28,6 +28,7 @@ const AssignRiders = () => {
 
 
     const openAssignRiderModal = parcel => {
+       
         setSelectedParcel(parcel);
         riderModalRef.current.showModal()
     }
@@ -105,7 +106,7 @@ const AssignRiders = () => {
                             {/* head */}
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>id</th>
                                     <th>Name</th>
                                     <th>Job</th>
                                     <th>Favorite Color</th>

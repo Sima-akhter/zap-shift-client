@@ -111,7 +111,7 @@ const Rider = () => {
 
             {/* receiver email */}
             <label className="label">NID</label>
-            <input type="email" {...register('nid')} className="input w-full" placeholder="NID" />
+            <input type="number" {...register('nid')} className="input w-full" placeholder="NID" />
 
 
 
